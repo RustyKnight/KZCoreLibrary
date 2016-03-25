@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		70E1EEC91CA4C43300AE73DA /* KZCoreLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 70E1EEC81CA4C43300AE73DA /* KZCoreLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		70E1EED11CA4C45D00AE73DA /* CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E1EED01CA4C45D00AE73DA /* CoreExtensions.swift */; };
 		70E1EED51CA4C57000AE73DA /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E1EED41CA4C57000AE73DA /* DateExtensions.swift */; };
 		70E1EED71CA4FC6500AE73DA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E1EED61CA4FC6500AE73DA /* StringExtensions.swift */; };
+		70E1EEF71CA5E9ED00AE73DA /* NumericalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E1EEF61CA5E9ED00AE73DA /* NumericalExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		70E1EEC51CA4C43200AE73DA /* KZCoreLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KZCoreLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70E1EEC81CA4C43300AE73DA /* KZCoreLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KZCoreLibrary.h; sourceTree = "<group>"; };
 		70E1EECA1CA4C43300AE73DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70E1EED01CA4C45D00AE73DA /* CoreExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreExtensions.swift; path = extensions/CoreExtensions.swift; sourceTree = "<group>"; };
 		70E1EED41CA4C57000AE73DA /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtensions.swift; path = utilities/DateExtensions.swift; sourceTree = "<group>"; };
 		70E1EED61CA4FC6500AE73DA /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = extensions/StringExtensions.swift; sourceTree = "<group>"; };
+		70E1EEF61CA5E9ED00AE73DA /* NumericalExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericalExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				70E1EED41CA4C57000AE73DA /* DateExtensions.swift */,
-				70E1EED01CA4C45D00AE73DA /* CoreExtensions.swift */,
 				70E1EED61CA4FC6500AE73DA /* StringExtensions.swift */,
+				70E1EEF61CA5E9ED00AE73DA /* NumericalExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -149,7 +149,7 @@
 			files = (
 				70E1EED71CA4FC6500AE73DA /* StringExtensions.swift in Sources */,
 				70E1EED51CA4C57000AE73DA /* DateExtensions.swift in Sources */,
-				70E1EED11CA4C45D00AE73DA /* CoreExtensions.swift in Sources */,
+				70E1EEF71CA5E9ED00AE73DA /* NumericalExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
