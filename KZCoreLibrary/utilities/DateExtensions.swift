@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension NSDate {
+public extension Date {
 	
 	/**
 		This is itended mostly for simplicty when trying to dump the
@@ -20,102 +20,102 @@ public extension NSDate {
 	}
 	
 	public func stringFromDate(withFormat format: String) -> String {
-		let formatter = NSDateFormatter()
+		let formatter = DateFormatter()
 		formatter.dateFormat = format
-		return formatter.stringFromDate(self)
+		return formatter.string(from: self)
 	}
 
 	/** 
 	 * Convinence method to subtract a given value from date component
 	 */
-	public func subtrac(amount: Int, forComponent unit: NSCalendarUnit) -> NSDate? {
+	public func subtrac(_ amount: Int, forComponent unit: Calendar.Unit) -> Date? {
 		return add(amount * -1, forComponent: unit)
 	}
 	
 	/**
 	 * Method to add a given value from date component
 	 */
-	public func add(amount: Int, forComponent unit: NSCalendarUnit) -> NSDate? {
-		let calendar = NSCalendar.currentCalendar()
-		let dateComponents: NSDateComponents = NSDateComponents()
-		dateComponents.setValue(amount, forComponent: unit)
-		return calendar.dateByAddingComponents(
-			dateComponents,
-			toDate: self,
-			options: NSCalendarOptions(rawValue: 0))
+	public func add(_ amount: Int, forComponent unit: Calendar.Unit) -> Date? {
+		let calendar = Calendar.current()
+		let dateComponents: DateComponents = DateComponents()
+		(dateComponents as NSDateComponents).setValue(amount, forComponent: unit)
+		return calendar.date(
+			byAdding: dateComponents,
+			to: self,
+			options: Calendar.Options(rawValue: 0))
 	}
 	
 	/**
 	 * Convinence method to subtract a number of months from a date
 	 */
-	public func subtract(months months: Int) -> NSDate? {
+	public func subtract(months: Int) -> Date? {
 		return add(months: months * -1)
 	}
 	
 	/**
 	 * Convinence method to add a number of months from a date
 	 */
-	public func add(months months: Int) -> NSDate? {
-		return add(months, forComponent: NSCalendarUnit.Month)
+	public func add(months: Int) -> Date? {
+		return add(months, forComponent: Calendar.Unit.month)
 	}
 
 	/**
 	 * Convinence method to add a number of days from a date
 	 */
-	public func add(days days: Int) -> NSDate? {
-		return add(days, forComponent: NSCalendarUnit.Day)
+	public func add(days: Int) -> Date? {
+		return add(days, forComponent: Calendar.Unit.day)
 	}
 	
 	/**
 	 * Convinence method to subtract a number of days from a date
 	 */
-	public func subtract(days days: Int) -> NSDate? {
+	public func subtract(days: Int) -> Date? {
 		return add(days: days * -1)
 	}
 	
 	/**
 	* Convinence method to add a number of years from a date
 	*/
-	public func add(years years: Int) -> NSDate? {
-		return add(years, forComponent: NSCalendarUnit.Year)
+	public func add(years: Int) -> Date? {
+		return add(years, forComponent: Calendar.Unit.year)
 	}
 	
 	/**
 	* Convinence method to subtract a number of years from a date
 	*/
-	public func subtract(years years: Int) -> NSDate? {
+	public func subtract(years: Int) -> Date? {
 		return add(years: years * -1)
 	}
 	
-	public func with(hour hour: Int, minute min: Int, seconds: Int, nanoSeconds nanos: Int) -> NSDate? {
-		let calendar = NSCalendar.currentCalendar()
-		let dateComponents: NSDateComponents = NSDateComponents()
+	public func with(hour: Int, minute min: Int, seconds: Int, nanoSeconds nanos: Int) -> Date? {
+		let calendar = Calendar.current()
+		var dateComponents: DateComponents = DateComponents()
 		
 		dateComponents.hour = hour
 		dateComponents.minute = min
 		dateComponents.second = seconds
 		dateComponents.nanosecond = nanos
 		
-		return calendar.dateByAddingComponents(
-			dateComponents,
-			toDate: self,
-			options: NSCalendarOptions(rawValue: 0))
+		return calendar.date(
+			byAdding: dateComponents,
+			to: self,
+			options: Calendar.Options(rawValue: 0))
 	}
 	
-	public func timeAtEndOfDay() -> NSDate? {
+	public func timeAtEndOfDay() -> Date? {
 		return with(hour: 23, minute: 59, seconds: 59, nanoSeconds: 0)
 	}
 	
-	public func timeAtStartOfDay() -> NSDate? {
+	public func timeAtStartOfDay() -> Date? {
 		return with(hour: 0, minute: 0, seconds: 0, nanoSeconds: 1)
 	}
 	
-	public func isAfter(dateToCompare: NSDate) -> Bool {
+	public func isAfter(_ dateToCompare: Date) -> Bool {
 		//Declare Variables
 		var isAfter = false
 		
 		//Compare Values
-		if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending {
+		if self.compare(dateToCompare) == ComparisonResult.orderedDescending {
 			isAfter = true
 		}
 		
@@ -123,12 +123,12 @@ public extension NSDate {
 		return isAfter
 	}
 	
-	public func isBefore(dateToCompare: NSDate) -> Bool {
+	public func isBefore(_ dateToCompare: Date) -> Bool {
 		//Declare Variables
 		var isBefore = false
 		
 		//Compare Values
-		if self.compare(dateToCompare) == NSComparisonResult.OrderedAscending {
+		if self.compare(dateToCompare) == ComparisonResult.orderedAscending {
 			isBefore = true
 		}
 		
@@ -136,12 +136,12 @@ public extension NSDate {
 		return isBefore
 	}
 	
-	public func isEqualTo(dateToCompare: NSDate) -> Bool {
+	public func isEqualTo(_ dateToCompare: Date) -> Bool {
 		//Declare Variables
 		var isEqualTo = false
 		
 		//Compare Values
-		if self.compare(dateToCompare) == NSComparisonResult.OrderedSame {
+		if self.compare(dateToCompare) == ComparisonResult.orderedSame {
 			isEqualTo = true
 		}
 		
@@ -149,7 +149,7 @@ public extension NSDate {
 		return isEqualTo
 	}
 	
-	public func excludingTimeIsBetween(startDate startDate: NSDate, and endDate: NSDate) -> Bool {
+	public func excludingTimeIsBetween(startDate: Date, and endDate: Date) -> Bool {
 		
 		var isBetween = false
 		if let startDate = startDate.timeAtStartOfDay() {
@@ -166,7 +166,7 @@ public extension NSDate {
 		
 	}
 
-	public func excludingTimeIsBetweenOrEqualTo(startDate startDate: NSDate, and endDate: NSDate) -> Bool {
+	public func excludingTimeIsBetweenOrEqual(to startDate: Date, and endDate: Date) -> Bool {
 		
 		var isBetweenOrEqualTo = false
 		if let startDate = startDate.subtract(days: 1) {
@@ -181,53 +181,57 @@ public extension NSDate {
 		
 	}
 	
-	public class func daysBetween(fromDate: NSDate, and toDate: NSDate) -> Int? {
-		let calendar = NSCalendar.currentCalendar()
+	public static func daysBetween(_ fromDate: Date, and toDate: Date) -> Int? {
+		let calendar = Calendar.current()
 		var startDate: NSDate? = nil
 		var endDate: NSDate? = nil
-		calendar.rangeOfUnit(NSCalendarUnit.Day, startDate: &startDate, interval: nil, forDate: fromDate)
-		calendar.rangeOfUnit(NSCalendarUnit.Day, startDate: &endDate, interval: nil, forDate: toDate)
+		calendar.range(of: Calendar.Unit.day, start: &startDate, interval: nil, for: fromDate)
+		calendar.range(of: Calendar.Unit.day, start: &endDate, interval: nil, for: toDate)
 		
 		var days: Int? = nil
 		
-		if let startDate = startDate {
-			if let endDate = endDate {
-				let difference = calendar.components(
-					NSCalendarUnit.Day,
-					fromDate: startDate,
-					toDate: endDate,
-					options: NSCalendarOptions(rawValue: 0))
-				
-				days = difference.day
-			}
+		guard let from = startDate as? Date else {
+			return days
 		}
+		guard let to = endDate as? Date else {
+			return days
+		}
+		
+		let difference = calendar.components(
+			Calendar.Unit.day,
+			from: from,
+			to: to,
+			options: Calendar.Options(rawValue: 0))
+		
+		days = difference.day
+		
 		return days
 	}
 	
-	public class func todayWithSecondsSinceMidnight(seconds: Int) -> NSDate? {
-		if let today = NSDate().timeAtStartOfDay() {
-			return today.dateByAddingTimeInterval(NSTimeInterval(seconds))
+	public static func today(withSecondsSinceMidnight seconds: Int) -> Date? {
+		if let today = Date().timeAtStartOfDay() {
+			return today.addingTimeInterval(TimeInterval(seconds))
 		}
 		return nil
 	}
 	
 	public func dayOfWeek() -> Int {
-		return NSDate.dayOfWeekFor(self)
+		return Date.dayOfWeekFor(self)
 	}
 	
 	public func dayOfWeek(startinfFrom from: Int) -> Int {
-		return NSDate.dayOfWeekFor(self, startingFrom: from)
+		return Date.dayOfWeekFor(self, startingFrom: from)
 	}
 	
-	public class func dayOfWeekFor(date: NSDate) -> Int {
-		return NSDate.dayOfWeekFor(date, startingFrom: 1)
+	public static func dayOfWeekFor(_ date: Date) -> Int {
+		return Date.dayOfWeekFor(date, startingFrom: 1)
 	}
 	
-	public class func dayOfWeekFor(date: NSDate, startingFrom: Int) -> Int {
+	public static func dayOfWeekFor(_ date: Date, startingFrom: Int) -> Int {
 		
-		let calendar = NSCalendar.currentCalendar()
+		let calendar = Calendar.current()
 		calendar.firstWeekday = startingFrom
-		let dow = calendar.ordinalityOfUnit(NSCalendarUnit.Weekday, inUnit: NSCalendarUnit.WeekOfMonth, forDate: date)
+		let dow = calendar.ordinality(of: Calendar.Unit.weekday, in: Calendar.Unit.weekOfMonth, for: date)
 		
 		return dow
 		
