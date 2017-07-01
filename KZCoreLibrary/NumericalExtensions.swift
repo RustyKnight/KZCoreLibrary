@@ -12,10 +12,10 @@ import Foundation
 
 public extension Float {
 	public var toRadians : Float {
-		return self * Float(M_PI) / 180.0
+		return self * Float(Double.pi) / 180.0
 	}
 	public var toDegrees: Float {
-		return self * 180 / Float(M_PI)
+		return self * 180 / Float(Double.pi)
 	}
 	public var toDouble: Double {
 		return Double(self)
@@ -24,11 +24,11 @@ public extension Float {
 
 public extension Double {
 	public var toRadians : Double {
-		return self * M_PI / 180.0
+		return self * Double.pi / 180.0
 	}
 	
 	public var toDegrees: Double {
-		return self * 180 / M_PI
+		return self * 180 / Double.pi
 	}
 	
 	public var toFloat: Float {

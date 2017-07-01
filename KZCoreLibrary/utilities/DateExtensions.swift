@@ -36,7 +36,7 @@ public extension Date {
 	 * Method to add a given value from date component
 	 */
 	public func add(_ amount: Int, forComponent unit: Calendar.Unit) -> Date? {
-		let calendar = Calendar.current()
+		let calendar = Calendar.current
 		let dateComponents: DateComponents = DateComponents()
 		(dateComponents as NSDateComponents).setValue(amount, forComponent: unit)
 		return calendar.date(
@@ -88,7 +88,7 @@ public extension Date {
 	}
 	
 	public func with(hour: Int, minute min: Int, seconds: Int, nanoSeconds nanos: Int) -> Date? {
-		let calendar = Calendar.current()
+		let calendar = Calendar.current
 		var dateComponents: DateComponents = DateComponents()
 		
 		dateComponents.hour = hour
@@ -182,7 +182,7 @@ public extension Date {
 	}
 	
 	public static func daysBetween(_ fromDate: Date, and toDate: Date) -> Int? {
-		let calendar = Calendar.current()
+		let calendar = Calendar.current
 		var startDate: NSDate? = nil
 		var endDate: NSDate? = nil
 		calendar.range(of: Calendar.Unit.day, start: &startDate, interval: nil, for: fromDate)
@@ -190,10 +190,10 @@ public extension Date {
 		
 		var days: Int? = nil
 		
-		guard let from = startDate as? Date else {
+		guard let from = startDate as Date? else {
 			return days
 		}
-		guard let to = endDate as? Date else {
+		guard let to = endDate as Date? else {
 			return days
 		}
 		
