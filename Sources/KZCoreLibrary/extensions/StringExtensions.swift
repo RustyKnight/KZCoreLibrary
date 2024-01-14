@@ -9,7 +9,7 @@
 import Foundation
 
 public extension Int {
-	public func zeroPad(withDigits digits: Int) -> String {
+	func zeroPad(withDigits digits: Int) -> String {
 		let value = String.localizedStringWithFormat("%%0%dd", digits)
 		return String.localizedStringWithFormat(value, self)
 	}
